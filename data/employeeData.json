@@ -1,0 +1,8 @@
+{
+  "firstName": "Akshay",
+  "lastName": "Kumar",
+  "employeeId": "98765",
+  "profilePicturePath": "data/avatar.png",
+  "jobTitle": "QA Engineer",
+  "employmentStatus": "Full-Time Permanent"
+}
