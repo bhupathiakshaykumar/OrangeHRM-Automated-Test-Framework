@@ -5,9 +5,7 @@ export class PimPage {
 
   async navigateToPIM() {
     await this.page.getByRole('link', { name: 'PIM' }).click();
-    await expect(this.page.getByRole('heading', { name: 'PIM' })).toBeVisible({
-      message: 'PIM module header did not appear',
-    });
+    await expect(this.page.getByRole('heading', { name: 'PIM' })).toBeVisible();
   }
 
   // Removed imageRelPath and file upload steps
@@ -27,9 +25,7 @@ export class PimPage {
 
     // Save
     await this.page.getByRole('button', { name: 'Save' }).first().click();
-    await expect(this.page.getByText('Successfully Saved')).toBeVisible({
-      message: 'Success notification banner not shown after adding employee',
-    });
+    await expect(this.page.getByText('Successfully Saved')).toBeVisible();
   }
 
   async searchEmployeeById(empId: string) {
@@ -41,9 +37,7 @@ export class PimPage {
   }
 
   async verifyRecordPresent(empId: string) {
-    await expect(this.page.locator('.oxd-table-card').filter({ hasText: empId })).toBeVisible({
-      message: `Employee record with ID ${empId} was not found in the table`,
-    });
+    await expect(this.page.locator('.oxd-table-card').filter({ hasText: empId })).toBeVisible();
   }
 
   async editEmployeeDetails(empId: string, jobTitle: string) {
@@ -58,24 +52,18 @@ export class PimPage {
     await this.page.locator('.oxd-select-dropdown').getByText(jobTitle).first().click();
 
     await this.page.getByRole('button', { name: 'Save' }).first().click();
-    await expect(this.page.getByText('Successfully Updated')).toBeVisible({
-      message: 'Update confirmation toast was not displayed',
-    });
+    await expect(this.page.getByText('Successfully Updated')).toBeVisible();
   }
 
   async deleteEmployee(empId: string) {
     await this.searchEmployeeById(empId);
     await this.page.locator('.oxd-table-cell-actions .bi-trash').first().click();
     await this.page.getByRole('button', { name: 'Yes, Delete' }).click();
-    await expect(this.page.getByText('Successfully Deleted')).toBeVisible({
-      message: 'Delete confirmation toast was not displayed',
-    });
+    await expect(this.page.getByText('Successfully Deleted')).toBeVisible();
   }
 
   async verifyRecordDeleted(empId: string) {
     await this.searchEmployeeById(empId);
-    await expect(this.page.getByText('No Records Found')).toBeVisible({
-      message: 'Record was still visible after deletion',
-    });
+    await expect(this.page.getByText('No Records Found')).toBeVisible();
   }
 }
